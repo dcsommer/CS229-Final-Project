@@ -900,25 +900,25 @@
 % -- end of original
 
 % (JSS) Fix for vertical spacing bug - Gerry Murray July 30th. 2002
-\def\proof{%
-\vspace{-\lastskip}\vspace{-\parsep}\penalty-51%
-\global\@qededfalse
-\@ifnextchar[{\@xproof}{\@proof}%
-}
+%\def\proof{%
+%\vspace{-\lastskip}\vspace{-\parsep}\penalty-51%
+%\global\@qededfalse
+%\@ifnextchar[{\@xproof}{\@proof}%
+%}
 
-\def\endproof{%
-    \if@qeded\else\qed\fi
-    \endtrivlist
-}
-\def\@proof{%
-    \trivlist
-    \item[%
-        \hskip 10\p@
-        \hskip \labelsep
-        {\sc Proof.}%
-    ]
-    \ignorespaces
-}
+%\def\endproof{%
+%    \if@qeded\else\qed\fi
+%    \endtrivlist
+%}
+%\def\@proof{%
+%    \trivlist
+%    \item[%
+%        \hskip 10\p@
+%        \hskip \labelsep
+%        {\sc Proof.}%
+%    ]
+%    \ignorespaces
+%}
 \def\@xproof[#1]{%
     \trivlist
     \item[\hskip 10\p@\hskip \labelsep{\sc Proof #1.}]%
