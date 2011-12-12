@@ -1,4 +1,4 @@
-load 041111_0a_1m.mat;
+load 110810a_1m.mat;
 
 % convert from cells array to matrix
 dataM = zeros(size(data, 1), size(data{1},1));
@@ -10,7 +10,7 @@ end
 [Data, PeakIndex, PeakAmp, PeakChannel] = Snip(dataM);
 
 % extract features
-[features] = extract_features(data, peaks);
+[features] = extract_features(Data, PeakIndex);
 
 % run PCA to find principal components
 [coeff, score] = princomp(features);
