@@ -1,10 +1,8 @@
-function [PeakIndex, PeakAmp, PeakChannel] = Snip(Data)
+function [PeakIndex, PeakAmp, PeakChannel] = Snip(Data,dthresh)
    
 NumChannels = size(Data,1);
 NumSamples = size(Data,2);
 
-dthresh = 2;
-    
 d2=[zeros(1,NumSamples-1);diff(Data,1,2);zeros(1,NumSamples-1)];
 %Select Peaks larger than dthresh
 disp 'Find Peaks - local maxima of derivative'

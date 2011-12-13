@@ -9,5 +9,5 @@ for i=2:(numPeaks-1)
   leftBound = peaks(i)-left;
   rightBound = peaks(i)+right;
   event = data(:, leftBound:rightBound);
-  features(i,:) = reshape(event, numChannels * (rightBound - leftBound + 1), 1);
+  features(i,:) = reshape(event', numChannels * (rightBound - leftBound + 1), 1);
 end
