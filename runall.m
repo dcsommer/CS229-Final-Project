@@ -1,5 +1,7 @@
 load 110810a_1m.mat;
 
+REDUCED_DIMENSION = 300;
+
 % convert from cells array to matrix
 dataM = zeros(size(data, 1), size(data{1},1));
 for i = 1:size(dataM, 1)
@@ -12,12 +14,9 @@ end
 % extract features
 [features] = extract_features(Data, PeakIndex);
 
-% run PCA to find principal components
-[coeff, score] = princomp(features);
+% reduce dimensions of features via PCA
+[reduced_features] = pca_reduce(features, REDUCED_DIMENSION);
+%% reduce dimensions of featuers by fitting a polynomial
+%reduced_features = polyfit(features, REDUCED_DIMENSION);
 
-% Project each feature onto the top 300 principal components to reduce
-% the dimension of the features
-REDUCED_DIMENSION = 300;
-topDims = coeff(1:REDUCED_DIMENSION, size(coeff,2));
-featuresReduced = features * topDims';
-
+% TODO: k-means here
