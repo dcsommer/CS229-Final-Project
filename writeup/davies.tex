@@ -1,0 +1,42 @@
+We use k means to determine the optimal clusters for a particular
+value of k, but we must use a separate technique for determining the
+optimal value of k, or the number of cells in the system.  We use two
+such techniques and compare their efficacy.  The first is the
+Davies-Bouldin index.  It favors sets of clusters with high
+intra-cluster similarity and low inter-cluster similarity.  The
+formula is as follows:
+
+$X_j$ is sample $j$
+$A_i$ is the center of cluster $i$
+$T_i$ is the number of samples assigned to cluster $i$
+
+$S_i$ measures the intra cluster similarity of cluster $i$
+
+$S_i = (\frac{1}{T_i} \sum\limits_{j=1}^{T_i} |X_j - A_i|^q)^{1\q)$
+
+$M_{ij}$ measures the inter cluster similarity of clusters $i$ and $j$
+
+$M_{ij} = (\sum\limits_{k=1}^{N} |a_{ki} - a{kj}|^p)^{1/p}$
+
+$DB$ is the Davies Bouldin index
+
+$DB = \frac{1}{N} \sum\limits_{i=1}^N \max_{j:i \neq j} R_{ij}$
+
+The following is a graph of k vs DB:
+
+..graph..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
