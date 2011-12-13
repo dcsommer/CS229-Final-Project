@@ -1,12 +1,10 @@
-function [CenterIds, Centers] = gmeans_cluster(features)
-%for alpha = 0.0001, critical point is 1.8692
-crit = 12; %1.8692;
+function [CenterIds, Centers] = gmeans_cluster(features, crit)
 oldk = 1;
 k = 16;
 fprintf('Initial cluster with %d centers\n', k);
 [CenterIds, Centers] = kmeans(features, k);
 
-while oldk ~= k && k < 100 % can't reliably measure differences b/w >100 cells
+while oldk ~= k && k < 200 % can't reliably measure differences b/w >200 cells
   oldk = k;
   for i=1:size(Centers,1)
     fprintf('checking center %d of %d\n', i, size(Centers,1))
