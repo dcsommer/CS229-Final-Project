@@ -1,6 +1,6 @@
 function [CenterIds, Centers] = gmeans_cluster(features)
 %for alpha = 0.0001, critical point is 1.8692
-crit = 1.8692;
+crit = 12; %1.8692;
 oldk = 1;
 k = 16;
 fprintf('Initial cluster with %d centers\n', k);
