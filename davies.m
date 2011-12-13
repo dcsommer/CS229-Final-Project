@@ -1,4 +1,12 @@
-function [avgDist, val] = davies(clusters, clusterI, examples)
+% clusters is a k x n matrix
+% clusterI contains the cluster each of the m training examples belongs to
+% examples is the m x n matrix of training examples
+%
+% val is the Davies Bouldin index which should be a measure of "goodness" of
+% this particular set of clusters.  It should always be less than 1 and lower
+% is better.
+
+function [val] = davies(clusters, clusterI, examples)
     nclusters = size(clusters, 1);  
 
     totDist = zeros(nclusters, 1);
