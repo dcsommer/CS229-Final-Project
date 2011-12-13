@@ -26,4 +26,4 @@ dataNorm = dataNorm'; %Put in format rest of program is expeting
 %reduced_features = polyfit(features, REDUCED_DIMENSION,30);
 
 % TODO: k-means here
-[CenterIds, Centers] = kmeans_cluster(reduced_features);
+[CenterIds, Centers] = gmeans_cluster(reduced_features);
