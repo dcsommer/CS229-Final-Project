@@ -1,0 +1,26 @@
+;; RefTeX parse info file
+;; File: /Users/davidbrody/School/CS448B/poster/poster.tex
+;; User: davidbrody (David Brody)
+
+(set reftex-docstruct-symbol '(
+
+
+(xr nil "\\\\\\\\\\\\")
+
+(index-tags)
+
+(is-multi nil)
+
+(bibview-cache)
+
+(master-dir . "/Users/davidbrody/School/CS448B/poster/")
+
+(label-numbers)
+
+(bof "/Users/davidbrody/School/CS448B/poster/poster.tex")
+
+("tab:baseline-results" "t" "Baseline results using appearance-based features" "/Users/davidbrody/School/CS448B/poster/poster.tex" nil)
+
+(eof "/Users/davidbrody/School/CS448B/poster/poster.tex")
+))
+
