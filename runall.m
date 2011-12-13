@@ -1,7 +1,7 @@
 'Loading Data'
 load 110810a_1m.mat;
 
-REDUCED_DIMENSION = 1800;
+REDUCED_DIMENSION = 300;
 
 % convert from cells array to matrix
 CHAN_N = length(data);
@@ -25,5 +25,5 @@ dataNorm = dataNorm'; %Put in format rest of program is expeting
 %% reduce dimensions of featuers by fitting a polynomial
 %reduced_features = polyfit(features, REDUCED_DIMENSION,30);
 
-% TODO: k-means here
+'Clustering'
 [CenterIds, Centers] = gmeans_cluster(reduced_features);
