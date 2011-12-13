@@ -20,9 +20,7 @@ dataNorm = dataNorm'; %Put in format rest of program is expeting
 [features] = extract_features(dataNorm, PeakIndex);
 
 [reduced_features] = pca_reduce(features, REDUCED_DIMENSION);
-%% reduce dimensions of featuers by fitting a polynomial
-%reduced_features = polyfit_reduce(features, REDUCED_DIMENSION);
+%reduced_features = polyfit_reduce(features, REDUCED_DIMENSION, 30);
 
 % TODO: k-means here
 [CenterIds, Centers] = kmeans_cluster(reduced_features);
-kmeans(reduced_features, k)
