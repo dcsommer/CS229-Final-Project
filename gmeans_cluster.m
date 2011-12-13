@@ -1,13 +1,15 @@
-function [CenterIds, Centers] = gmeans_cluster(features, crit, maxClusters)
+function [CenterIds, Centers, ks, means] = gmeans_cluster(features, crit, maxClusters)
 oldk = 1;
 k = 16;
 fprintf('Initial cluster with %d centers\n', k);
 [CenterIds, Centers] = kmeans(features, k);
 
+a=1;
 while oldk ~= k && k < maxClusters
   oldk = k;
+  A2SZ = zeros(size(Centers,1), 1);
   for i=1:size(Centers,1)
-    fprintf('checking center %d of %d\n', i, size(Centers,1))
+    %fprintf('checking center %d of %d\n', i, size(Centers,1))
     is = features(CenterIds == i,:);
     if (size(is, 1) < 2)
       continue;
@@ -26,12 +28,14 @@ while oldk ~= k && k < maxClusters
       sum = sum + (2*j - 1)*(log(Z(j)) + log(1 - Z(n+1-j)));
     end
     A2Z = -n - sum/n;
-    A2SZ = A2Z*(1 + 4/n - 25/n^2)
-    n
-    if A2SZ > crit
+    A2SZ(i) = A2Z*(1 + 4/n - 25/n^2);
+    if A2SZ(i) > crit
       k = k+1; % reject null hypothesis, there should be 2 clusters
     end
   end
-  fprintf('reclustering with %d centers\n', k)
+  ks(a) = k;
+  means(a) = mean(A2SZ);
+  fprintf(  'reclustering with %d centers\n', k)
   [CenterIds, Centers] = kmeans(features, k);
+  a = a+1;
 end

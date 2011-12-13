@@ -26,4 +26,3 @@ disp '------PCA Reduce------'
 
 disp '-----Clustering-----'
 [CenterIds, Centers] = gmeans_cluster(reduced_features, GMEANS_CRIT, MAX_CLUSTERS);
-
