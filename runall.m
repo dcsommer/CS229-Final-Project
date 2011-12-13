@@ -3,7 +3,6 @@ filename = '110810a_1m.mat';
 SMOOTH_POINTS = 7;
 REDUCED_DIMENSION = 1800;
 
-
 %% Pipeline
 disp '------Format Data------'
 [dataNorm] = data_format(filename,SMOOTH_POINTS);
@@ -22,5 +21,6 @@ disp '------PCA Reduce------'
 %% reduce dimensions of featuers by fitting a polynomial
 %reduced_features = polyfit(features, REDUCED_DIMENSION,30);
 
-% TODO: k-means here
-%[CenterIds, Centers] = kmeans_cluster(reduced_features);
+'Clustering'
+[CenterIds, Centers] = gmeans_cluster(reduced_features);
+
