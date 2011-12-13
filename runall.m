@@ -6,16 +6,17 @@ REDUCED_DIMENSION = 300;
 CHAN_N = length(data);
 CHAN_L = length(data{1});
 
+'Normalize Data'
 dataM = (reshape(cell2mat(data),CHAN_L,CHAN_N));
 dataNorm = (dataM - repmat(mean(dataM),CHAN_L,1)) ./ repmat(std(dataM),CHAN_L,1);
-
+dataNorm = dataNorm'; %Put in format rest of program is expeting
 % get peaks
 'Get Peaks'
-[Data, PeakIndex, PeakAmp, PeakChannel] = Snip(dataNorm);
+[PeakIndex, PeakAmp, PeakChannel] = Snip(dataNorm);
 
 % extract features
 'Extract Features'
-[features] = extract_features(Data, PeakIndex);
+[features] = extract_features(dataNorm, PeakIndex);
 
 % reduce dimensions of features via PCA
 'PCA Reduce'
