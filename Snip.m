@@ -1,5 +1,4 @@
 function [PeakIndex, PeakAmp, PeakChannel] = Snip(Data,dthresh)
-   
 NumChannels = size(Data,1);
 NumSamples = size(Data,2);
 
@@ -9,7 +8,7 @@ disp 'Find Peaks - local maxima of derivative'
 peaklocs= find(and(and(d2(1:NumChannels,:)>0,d2(2:NumChannels+1,:)<=0),Data(:,1:NumSamples-1)>dthresh))';
 %Select Sample Index (Time)
 disp 'Find Times of Peaks'
-PeakIndex = sort(mod(peaklocs,NumSamples));  %%%Also Peak Times! 
+PeakIndex = round(peaklocs / NumChannels); %sort(mod(peaklocs,NumChannels));  %%%Also Peak Times! 
 PeakIndex = unique(PeakIndex(PeakIndex ~= 0));
     
 %Only Select ones at least 15 samples apart

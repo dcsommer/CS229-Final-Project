@@ -1,29 +1,26 @@
-'Loading Data'
-load 110810a_1m.mat;
-
+%% Parameters
+filename = '110810a_1m.mat';
+SMOOTH_POINTS = 7;
 REDUCED_DIMENSION = 1800;
 
-% convert from cells array to matrix
-CHAN_N = length(data);
-CHAN_L = length(data{1});
 
-'Normalize Data'
-dataM = (reshape(cell2mat(data),CHAN_L,CHAN_N));
-dataNorm = (dataM - repmat(mean(dataM),CHAN_L,1)) ./ repmat(std(dataM),CHAN_L,1);
-dataNorm = dataNorm'; %Put in format rest of program is expeting
+%% Pipeline
+disp '------Format Data------'
+[dataNorm] = data_format(filename,SMOOTH_POINTS);
+
 % get peaks
-'Get Peaks'
-[PeakIndex, PeakAmp, PeakChannel] = Snip(dataNorm,10);
+disp '------Get Peaks------'
+[PeakIndex, PeakAmp, PeakChannel] = Snip(dataNorm,15);
 
 % extract features
-'Extract Features'
+disp '------Extract Features----'
 [features] = extract_features(dataNorm, PeakIndex);
 
 % reduce dimensions of features via PCA
-'PCA Reduce'
+disp '------PCA Reduce------'
 [reduced_features, coeff] = pca_reduce(features, REDUCED_DIMENSION);
 %% reduce dimensions of featuers by fitting a polynomial
 %reduced_features = polyfit(features, REDUCED_DIMENSION,30);
 
 % TODO: k-means here
-[CenterIds, Centers] = kmeans_cluster(reduced_features);
+%[CenterIds, Centers] = kmeans_cluster(reduced_features);
