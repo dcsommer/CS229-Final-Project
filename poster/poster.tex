@@ -223,10 +223,36 @@ prototype our clustering algorithms.
     \begin{column}{.3\linewidth}
       \begin{block}{Clustering}
         \noindent{\textbf{G-Means}}\par
-        
+        One way to choose k in the k-means algorithm is to use an algorithm
+developed in 2003 by Greg Hamerly and Charles Elka, presented in the NIPS
+2003 conference. In this method, a small value for k is
+chosen and kmeans is run. Then, for each cluster produced, we use a
+heuristic function to decide whether to split that cluster. The heuristic
+used is the Anderson-Darling statistic. If that statistic is greater than
+some threshold critical value, then we decide that the cluster should be
+split. The Anderson-Darling statistic is computed as follows:
+$$
+A^2(Z) = -n - \frac{1}{n}\sum_{i=1}^n (2i -
+1)[\log(z_i)+\log(1-z_{n+1-i})]
+$$$$
+A^2_*(Z) = A^2(Z)(1 + 4/n - 25/n^2)
+$$
+If the $A^2_*(Z)$ is greater than the threshold, we split. For this
+project we experimented with many thresholds and found that with $t=12$ we
+got good separation between clusters.
+
+
+       \begin{columns}[b]
+         \column{.66\linewidth}
+\includegraphics[width=60cm,height=36cm]{images/gmeans_k_vs_metric.png} 
+         \column{.2\linewidth}
+Here we plot the average Anderson-Darling statistic across all
+clusters as a function of k. We can see how we arrive at a value of k
+to use when the statistic crosses the threshold (12).
+       \end{columns} 
+
         \noindent{\textbf{Davies}}\par
       \end{block}
-      
 
        \begin{block}{Conclusion}
         \vskip1ex
