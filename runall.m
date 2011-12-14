@@ -18,7 +18,7 @@ disp '------Get Peaks------'
 disp '------Extract Features----'
 [features] = extract_features(dataNorm, PeakIndex);
 
-PCA = 1;
+PCA = 0;
 % reduce dimensions of features via PCA
 if(PCA==1)
     disp '------PCA Reduce------'
