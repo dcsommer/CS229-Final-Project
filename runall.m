@@ -4,7 +4,7 @@ SMOOTH_POINTS = 7;
 REDUCED_DIMENSION = 300;
 GMEANS_CRIT = 7; %for alpha = 0.0001, critical point is 1.8692
 MAX_CLUSTERS = 100; % can't reliably measure differences b/w >100 cells
-SNIP_THRESH = 11;
+SNIP_THRESH = 12;
 
 %% Pipeline
 disp '------Format Data------'
@@ -18,11 +18,15 @@ disp '------Get Peaks------'
 disp '------Extract Features----'
 [features] = extract_features(dataNorm, PeakIndex);
 
+PCA = 0;
 % reduce dimensions of features via PCA
-disp '------PCA Reduce------'
-[reduced_features, coeff] = pca_reduce(features, REDUCED_DIMENSION);
-%% reduce dimensions of features by fitting a polynomial
-%reduced_features = polyfit(features, REDUCED_DIMENSION,30);
-
+if(PCA==1)
+    disp '------PCA Reduce------'
+    [reduced_features, coeff] = pca_reduce(features, REDUCED_DIMENSION);
+else 
+    %% reduce dimensions of features by fitting a polynomial
+    disp '------PolyFit Reduce ------'
+    reduced_features = polyfit_reduce(features, REDUCED_DIMENSION,30);
+end
 disp '-----Clustering-----'
 [CenterIds, Centers] = gmeans_cluster(reduced_features, GMEANS_CRIT, MAX_CLUSTERS);

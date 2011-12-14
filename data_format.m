@@ -1,15 +1,15 @@
 function [dataNorm] = data_format(filename,smooth_points)
 %Get Data
 fprintf('Loading %s => Smoothing with %d points\n', filename, smooth_points);
-load(filename);
+V = load(filename);
 
 % convert from cells array to matrix
-CHAN_N = length(data);
-CHAN_L = length(data{1});
+CHAN_N = length(V.data);
+CHAN_L = length(V.data{1});
 
 disp 'Format Data'
 %Format Data In Correct Matrix Format
-dataM = (reshape(cell2mat(data),CHAN_L,CHAN_N));
+dataM = (reshape(cell2mat(V.data),CHAN_L,CHAN_N));
 
 disp 'Smooth Data'
 dataSmooth = dataM;
