@@ -1,10 +1,10 @@
 %% Parameters
 filename = '110810a_1m.mat';
 SMOOTH_POINTS = 7;
-REDUCED_DIMENSION = 300;
+REDUCED_DIMENSION = 180;
 GMEANS_CRIT = 7; %for alpha = 0.0001, critical point is 1.8692
 MAX_CLUSTERS = 100; % can't reliably measure differences b/w >100 cells
-SNIP_THRESH = 12;
+SNIP_THRESH = 7;
 
 %% Pipeline
 disp '------Format Data------'
@@ -18,7 +18,7 @@ disp '------Get Peaks------'
 disp '------Extract Features----'
 [features] = extract_features(dataNorm, PeakIndex);
 
-PCA = 0;
+PCA = 1;
 % reduce dimensions of features via PCA
 if(PCA==1)
     disp '------PCA Reduce------'
