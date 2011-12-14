@@ -182,29 +182,30 @@
      \end{block}
      
      \begin{block}{Dimensionality Reduction}
-       \noindent{\textbf{Principle Component Analysis}}\par
-       
-At this point, we have our features and are ready to run unsupervised
-learning algorithms on the data set. However, as we began experimenting
-with our data set, we realized that the time needed to learn on our data
-set was simply too great. We needed a way to reduce the dimensionality of
-our features. Since a feature vector consists of 30 measurements for 60
+       \vskip1cm
+       Given the features we are now ready to perform unsupervised
+       learning algorithms on the dataset. However, given the large
+       size of our dataset, the running time became substantial. We
+       employed various dimensionality reduction methods to help make
+       the problem more tractable. Since a feature vector consists of 30 measurements for 60
 channels each, we have features in $\mathbb{R}^{1800}$.
+       \vskip2cm
+       \noindent{\textbf{Principle Component Analysis}}
 
-The first approach we took was to apply PCA and take the top 300 principal
-components and project our features into that space, $\mathbb{R}^{300}$.
-Performing this optimization allowed us to run k-means clustering in
-roughly 13\% of the time without compression. We experimented with
-projecting into different dimension subspaces and found 300 to be a good
-dimension that saves enough on running time without sacrificing too much
-in terms of underfitting.
-
-\includegraphics[width=0.8\linewidth,height=40cm]{images/dim_vs_runningtime.png}
-       
-In this plot of time taken to run kmeans verses dimensionality of the
-feature, we can clearly see how we save considerable time by reducing the
-dimension of the problem. PCA was a huge win in being able to rapidly
-prototype our clustering algorithms.
+       \begin{columns}[c]
+         \column{.49\linewidth}
+         The first approach we took was to apply PCA to take the
+         dimension of $X^{(i)}$ from $\mathbb{R}^{1800}$ to
+         $\mathbb{R}^{\beta}$. Tested various $\beta$ values and found
+         300 to substantially help with running time (87\% reduction)
+         without underfitting. \break \vskip1cm
+         The plot on the right shows the time taken to run kmeans
+         versus the dimensionality of the feature. PCA was crutial in
+         rapid prototyping our clustering algorithms.
+         
+         \column{.48\linewidth}
+         \includegraphics[width=0.97\linewidth]{images/dim_vs_runningtime.png}
+       \end{columns}
 
        \noindent{\textbf{Polynomial Fitting}}\par
          We also tried fitting polynomials of various degrees. In this
