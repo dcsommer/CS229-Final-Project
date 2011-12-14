@@ -240,63 +240,56 @@ channels each, we have features in $\mathbb{R}^{1800}$.
         \noindent{\textbf{G-Means}}\par
         One way to choose k in the k-means algorithm is to use an algorithm
 developed in 2003 by Greg Hamerly and Charles Elka, presented in the NIPS
-2003 conference. In this method, a small value for k is
-chosen and kmeans is run. For each cluster produced, we use a
-heuristic function to decide whether to split that cluster: the
-Anderson-Darling statistic. If that statistic is greater than
-some threshold critical value, then we decide that the cluster should be
-split. The Anderson-Darling statistic is computed as follows:
+2003 conference. We start with kmeans at some small value for $k$ and for each cluster produced, a
+heuristic function decides whether to split that cluster: the
+Anderson-Darling statistic. The Anderson-Darling statistic is computed as follows:
 $$
 A^2(Z) = -n - \frac{1}{n}\sum_{i=1}^n (2i -
 1)[\log(z_i)+\log(1-z_{n+1-i})]
 $$$$
 A^2_*(Z) = A^2(Z)(1 + 4/n - 25/n^2)
 $$
-If $A^2_*(Z)$ is greater than the threshold, we split. For this
-project we experimented with many thresholds and found that with $t=12$ we
-got good separation between clusters.
-
+We define a threshold $\omega$ and only if $A^2_*(Z)  > \omega$ is
+greater than the threshold, we split. We found $\omega = 12$ to be best.
+\vskip2cm
        \begin{columns}[c,l]
-         \column{.46\linewidth}
-\includegraphics[width=50cm,height=26cm]{images/gmeans_k_vs_metric.png} 
-         \column{.3\linewidth}
+         \column{.25\linewidth}
+\includegraphics[width=1.0\linewidth]{images/gmeans_k_vs_metric.png} 
+         \column{.7\linewidth}
 Here we plot the average Anderson-Darling statistic across all
 clusters as a function of k. We can see how we arrive at a value of k
 to use when the statistic crosses the threshold (6).
        \end{columns} 
 
-       \noindent{\textbf{Davies-Bouldin Index}}\par Another way to
-       determine k is via the DB Index.  It favors sets of clusters
+       \noindent{\textbf{Davies-Bouldin Index}}\par The DB Index is
+       another way to determine $k$ by favoring sets of clusters
        with high intra-cluster similarity and low inter-cluster
        similarity.  The formula is as follows:\newline
 
-
 \begin{columns}[c,c]
   \column{.48\linewidth}
-$X_j$ is sample $j$\\
-$A_i$ is the center of cluster $i$\\
-$T_i$ is the number of samples assigned to cluster $i$\newline
-  \column{.48\linewidth}  
-$S_i$ measures the intra cluster similarity of cluster $i$\\
-$S_i = (\frac{1}{T_i} \sum\limits_{j=1}^{T_i} (X_j -
-A_i)^q)^{\frac{1}{q}}$\newline
-\end{columns} 
+$A^j$ = Center of cluster j \\
+$T^j = \{ {X^{(i)} ; X^{(i)}$ is in cluster $j} \} $ \\
+$S^i$ = the intra cluster similarity of cluster $i$ \\
+$M^{ij}$ = inter cluster similarity of clusters $i$, $j$ \break
+\begin{center}
+$S^i = (\frac{1}{|T^i|} \sum\limits_{j=1}^{|T^i|} (T^i_j -A^i)^q)^{\frac{1}{q}}$\newline
+$M^{ij} = (\sum\limits_{k=1}^{N} |a^i_k - a^j_k|^p)^{\frac{1}{p}}$\newline
 
-
-\begin{columns}[c,c]
-  \column{.40\linewidth}
-$M_{ij}$ measures the inter cluster similarity of clusters $i$ and $j$\\
-$M_{ij} = (\sum\limits_{k=1}^{N} |a_{ki} - a{kj}|^p)^{\frac{1}{p}}$\newline
-
-$DB$ is the Davies Bouldin index\\
 $DB = \frac{1}{N} \sum\limits_{i=1}^N \max_{j:i \neq j} R_{ij}$\newline
-
+\end{center} 
+ \column{.48\linewidth}  
 The graph to the right is of k vs DB:\newline
-  \column{.55\linewidth}  
-  \includegraphics[width=0.97\linewidth]{images/davies_k_vs_davies_index.png}
+\includegraphics[width=0.97\linewidth]{images/davies_k_vs_davies_index.png}
+
 \end{columns} 
 
       \end{block}
+
+      \begin{block}{Results}
+        \includegraphics[width=0.97\linewidth]{images/davies_k_vs_davies_index.png}
+
+        \end{block}
 
        \begin{block}{Conclusion}
         \vskip1ex
