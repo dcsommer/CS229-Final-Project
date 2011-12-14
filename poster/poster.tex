@@ -119,9 +119,7 @@
           \end{center}
           Smoothing over S points we define a new waveform where $R^i_j$
           is the jth datapoint in the ith channel: \break
-          \begin{center}
-          $W^i_j = \frac{1}{s}\sum_{s=-S/2}^{S/2}R^{i}_{j+s}$ \break
-          \end{center}
+          $$W^i_j = \frac{1}{s}\sum_{s=-S/2}^{S/2}R^{i}_{j+s}$$
           \break
           We then define $W'$ as the zero mean normalized to the standard
           deviation on each channel of $W$. The next step is to
@@ -255,26 +253,30 @@ to use when the statistic crosses the threshold (6).
        with high intra-cluster similarity and low inter-cluster
        similarity.  The formula is as follows:\newline
 
+
+\begin{columns}[c,c]
+  \column{.5\linewidth}
 $X_j$ is sample $j$\\
 $A_i$ is the center of cluster $i$\\
 $T_i$ is the number of samples assigned to cluster $i$\newline
-
+  \column{.5\linewidth}  
 $S_i$ measures the intra cluster similarity of cluster $i$\\
 $S_i = (\frac{1}{T_i} \sum\limits_{j=1}^{T_i} (X_j -
 A_i)^q)^{\frac{1}{q}}$\newline
+\end{columns} 
 
+
+\begin{columns}[c,c]
+  \column{.33\linewidth}
 $M_{ij}$ measures the inter cluster similarity of clusters $i$ and $j$\\
 $M_{ij} = (\sum\limits_{k=1}^{N} |a_{ki} - a{kj}|^p)^{\frac{1}{p}}$\newline
 
 $DB$ is the Davies Bouldin index\\
 $DB = \frac{1}{N} \sum\limits_{i=1}^N \max_{j:i \neq j} R_{ij}$\newline
 
-The following is a graph of k vs DB:\newline
-
-\begin{columns}[b]
-  \column{.66\linewidth}
+The graph to the right is of k vs DB:\newline
+  \column{.8\linewidth}  
   \includegraphics[width=60cm,height=36cm]{images/davies_k_vs_davies_index.png}
-  \column{.2\linewidth}  
 \end{columns} 
 
 
