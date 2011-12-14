@@ -14,11 +14,11 @@ anneal = [0.1 0.1 0.1 0.05 0.05 0.05 0.02 0.02 0.01 0.01 0.005 0.005 0.002 0.002
 
 for iter=1:length(anneal)
    iter
-   G = 1 ./ (1 + exp(-W * NewStream));
-   A = (1 - 2.*G) * NewStream' + inv(W');
-   W = W + anneal(iter) .* A;
+   %G = 1 ./ (1 + exp(-W * NewStream));
+   %A = (1 - 2.*G) * NewStream' + inv(W');
+   %W = W + anneal(iter) .* A;
    
-%    for i=1:size(NewStream,2)
+%   for i=1:size(NewSplotream,2)
 %       G = 1 ./ (1 + exp(-W*NewStream(:,i)));                                                                         
 %       A = (1 - 2 * G) * NewStream(:,i)' + inv(W');
 %       W = W + anneal(iter) .* A;
@@ -29,7 +29,7 @@ end;
 %%%% After finding W, use it to unmix the sources.  Place the unmixed sources
 %%%% in the matrix S (one source per column).  (Your code.)
 S = W * NewStream;
-S = S / (max(max(abs(S))));
+%S = S / (max(max(abs(S))));
 %S=0.99 * S./(ones(size(NewStream,1),1)*max(abs(S)));  % rescale each column to have maximum absolute value 1
 
 features_ica = features;
