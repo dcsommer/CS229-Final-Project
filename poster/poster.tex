@@ -189,7 +189,7 @@
        employed various dimensionality reduction methods to help make
        the problem more tractable. Since a feature vector consists of 30 measurements for 60
 channels each, we have features in $\mathbb{R}^{1800}$.
-       \vskip2cm
+       \vskip4cm
        \noindent{\textbf{Principle Component Analysis}}
 
        \begin{columns}[c]
@@ -197,7 +197,7 @@ channels each, we have features in $\mathbb{R}^{1800}$.
          The first approach we took was to apply PCA to take the
          dimension of $X^{(i)}$ from $\mathbb{R}^{1800}$ to
          $\mathbb{R}^{\beta}$. Tested various $\beta$ values and found
-         300 to substantially help with running time (87\% reduction)
+         300 to \alert{substantially help with running time} (87\% reduction)
          without underfitting. \break \vskip1cm
          The plot on the right shows the time taken to run kmeans
          versus the dimensionality of the feature. PCA was crutial in
@@ -206,7 +206,7 @@ channels each, we have features in $\mathbb{R}^{1800}$.
          \column{.48\linewidth}
          \includegraphics[width=0.97\linewidth]{images/dim_vs_runningtime.png}
        \end{columns}
-
+       \vskip4cm
        \noindent{\textbf{Polynomial Fitting}}\par
        Another approach to reducing the dimensionality was to take
        into account the dependencies of the features within each
@@ -224,11 +224,11 @@ channels each, we have features in $\mathbb{R}^{1800}$.
        information. As a result, it takes many more features to get
        the same amount of information back.
        \column{.49\linewidth}
-       \includegraphics[width=0.97\linewidth]{images/dim_vs_runningtime.png}
+       \includegraphics[width=0.97\linewidth]{images/error_poly_pca.png}
      \end{columns}
-     While polynomial fitting does keep temporal information into
-     account per channel in the condensation, it fails to encode the
-     information as well.
+     While polynomial fitting \alert{does keep temporal information} into
+     account per channel in the condensation, it \alert{fails to encode the
+     meaningful information as well}.
 
      \end{block}
    \end{column}
@@ -302,16 +302,11 @@ The graph to the right is of k vs DB:\newline
         \vskip1ex
         \noindent{\textbf{Conclusions}}
         \begin{itemize}
-        \item PCA compresses data well
-        \item 
-          having \alert{accurate univariate link potential}
-         \item Model preserves information
-          \item \alert{Adding classifications of people does not significantly
-          add to predictive power}
-          \begin{itemize}
-            \item May be because Email is poor indicator of useful
-              class partitioning
-            \end{itemize}
+        \item PCA was very useful for compressing the data well
+        \item Understanding meaning of data and how to format it
+          correctly is important
+        \item The number of clusters and the confidence of them is
+          very dependent on the heuristic used.
         \end{itemize}
 
         \vskip1ex
@@ -326,17 +321,9 @@ The graph to the right is of k vs DB:\newline
         \noindent{\textbf{Future Work}}
         \begin{itemize}
           \item Using polynomial fitting then PCA to compress
-          \item Try in domain that has \alert{more direct features} of who a
-            person may communicate with
-            \begin{itemize}
-              \item Facebook information would allow for application
-                to social network structure as well as indicitive
-                features of each person including location, school,
-                interests, etc.
-            \end{itemize}
-          \item Test model in scenario where limited amounts of test
-            data are observable
-         \end{itemize}
+          \item Use better clustering algorithm to take specific
+            neurophysiological heuristics into account.
+        \end{itemize}
 
         \vspace{-1ex}
       \end{block}
