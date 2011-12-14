@@ -115,11 +115,13 @@
           \noindent{\textbf{Definitions}}\par
           We begin with the raw waveform: \break
           \begin{center}
-          $R = {{R^i \in R^N; i = 1,...,CH}}$ \break
+          $R = \{ {R \in \mathbb{R}^{N x CH}; i = 1,...,CH} \}$ \break
           \end{center}
           Smoothing over S points we define a new waveform where $R^i_j$
           is the jth datapoint in the ith channel: \break
-          $$W^i_j = \frac{1}{s}\sum_{s=-S/2}^{S/2}R^{i}_{j+s}$$
+          \begin{center}
+          $W^i_j = \frac{1}{s}\sum_{s=-S/2}^{S/2}R^{(i)}_{j+s}$ \break
+          \end{center}
           \break
           We then define $W'$ as the zero mean normalized to the standard
           deviation on each channel of $W$. The next step is to
@@ -138,9 +140,10 @@
           \begin{center}
           $X^{(i)}_j = W'^{floor(i/(L+R+1))+1}_{mod(j, L+R+1) + P(i)}
           ; i = 1,...,|P|, j = 1,...,(L+R+1)*CH$ \break
+          $X^{(i)} \in \mathbb{R}^{CH(L+R+1)}$
           \end{center}
           \break
-          X is the feature vector we use to then cluster on.
+          $X$ is the feature vector we use to then cluster on.
        \end{block}
 
       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +159,7 @@
 
       \begin{block}{Pipeline}
         \begin{center}
-          \includegraphics[width=0.8\linewidth,height=15cm]{images/noexist.png}
+          \includegraphics[width=0.8\linewidth]{images/pipeline.jpg}
         \end{center}
         
         We paramaterize our feature vectors from the raw data with the following representations:
@@ -169,7 +172,8 @@
         more discrimanent features.
         \break
         \begin{center}
-        $Red(X,N,M; X \in \mathbb{R}^N) = Y \in \mathbb{R}^M$ 
+        $Red(X,N,M; X^{(i)} \in \mathbb{R}^N) = (Y^{(i)} \in
+        \mathbb{R}^M,I^{(i)} \in \mathbb{R})$ 
         \break
         \end{center}
         Clustering then takes the dimension reduced feature vectors
