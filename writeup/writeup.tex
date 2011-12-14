@@ -97,24 +97,6 @@ experiments, we recorded 100 seconds of data. Imprecisely, we have heard
 from the lab that each cell fires about 10 times a second, and that the
 equipment can reliably discern 30 cells so we expect
 each cluster to have around 3000 elements on average.
-
-This paper provides a sample of a \LaTeX\ document which conforms to
-the formatting guidelines for ACM SIG Proceedings.
-It complements the document \textit{Author's Guide to Preparing
-ACM SIG Proceedings Using \LaTeX$2_\epsilon$\ and Bib\TeX}. This
-source file has been written with the intention of being
-compiled under \LaTeX$2_\epsilon$\ and BibTeX.
-
-The developers have tried to include every imaginable sort
-of ``bells and whistles", such as a subtitle, footnotes on
-title, subtitle and authors, as well as in the text, and
-every optional component (e.g. Acknowledgments, Additional
-Authors, Appendices), not to mention examples of
-equations, theorems, tables and figures.
-
-To make best use of this sample document, run it through \LaTeX\
-and BibTeX, and compare this source code with the printed
-output produced by the dvi file.
 \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -189,10 +171,10 @@ channels each, we have features in $\mathbb{R}^{1800}$.
 The first approach we took was to apply PCA and take the top 300 principal
 components and project our features into that space, $\mathbb{R}^{300}$.
 
-Performing this optimization allowed us to run k-means clustering in a
-fraction of the time using compression. We experimented with projecting
-into different dimension subspaces and found 300 to be a good dimension
-that saves enough on running time without sacrificing too much in terms of
+Performing this optimization allowed us to run k-means clustering in 13\%
+of the time without compression. We experimented with projecting into
+different dimension subspaces and found 300 to be a good dimension that
+saves enough on running time without sacrificing too much in terms of
 underfitting.
 
 <Figure of dimension vs running time>
