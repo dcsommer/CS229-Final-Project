@@ -32,7 +32,7 @@
 \begin{document}
 
 \title{Spike Sorting using Machine Learning}
-\subtitle{Subtitle/extendend abstract}
+\subtitle{Using unsupervised algorithms to automatically classify cells}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -78,12 +78,12 @@
 David Brody\\
        \email{dbrody@stanford.edu}
 % 2nd. author
+\alignauthor Daniel Sommermann\\
+       \email{dcsommer@stanford.edu}
+% 3rd. author
 \alignauthor
 Michael Gummelt\\
        \email{mgummelt@stanford.edu}
-% 3rd. author
-\alignauthor Daniel Sommermann\\
-       \email{dcsommer@stanford.edu}
 }
 \date{16 December 2011}
 % Just remember to make sure that the TOTAL number of authors
@@ -92,48 +92,26 @@ Michael Gummelt\\
 
 \maketitle
 \begin{abstract}
+In this paper, we outline our approach to automatic spike sorting in the
+context of electrical response from neurons. Using compression techniques
+such as PCA and polynomial approximations, we were able to find a
+tractable subspace in which to analyze our features. On our reduced
+dimension samples, we then applied two algorithms wrapping k-means which
+help find k: g-means clustering and using the Davies-Bouldin index. We
+were able to get some 
+very good clusters while other clusters were not as well separated,
+indicating that there was a combination of a large degree of noise in our
+features and high variability in terms of the response of each sensor when
+a single cell spikes.
+
+\end{abstract}
+
+\section{Introduction}
 The equipment gathers voltage samples at a rate of 10 kHz. For our
 experiments, we recorded 100 seconds of data. Imprecisely, we have heard
 from the lab that each cell fires about 10 times a second, and that the
 equipment can reliably discern 30 cells so we expect
 each cluster to have around 3000 elements on average.
-\end{abstract}
-
-% A category with the (minimum) three required fields
-\category{H.4}{Information Systems Applications}{Miscellaneous}
-%A category including the fourth, optional field follows...
-\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
-
-\terms{Theory}
-
-\keywords{ACM proceedings, \LaTeX, text tagging} % NOT required for Proceedings
-
-\section{Introduction}
-The \textit{proceedings} are the records of a conference.
-ACM seeks to give these conference by-products a uniform,
-high-quality appearance.  To do this, ACM has some rigid
-requirements for the format of the proceedings documents: there
-is a specified format (balanced  double columns), a specified
-set of fonts (Arial or Helvetica and Times Roman) in
-certain specified sizes (for instance, 9 point for body copy),
-a specified live area (18 $\times$ 23.5 cm [7" $\times$ 9.25"]) centered on
-the page, specified size of margins (1.9 cm [0.75"]) top, (2.54 cm [1"]) bottom
-and (1.9 cm [.75"]) left and right; specified column width
-(8.45 cm [3.33"]) and gutter size (.83 cm [.33"]).
-
-The good news is, with only a handful of manual
-settings\footnote{Two of these, the {\texttt{\char'134 numberofauthors}}
-and {\texttt{\char'134 alignauthor}} commands, you have
-already used; another, {\texttt{\char'134 balancecolumns}}, will
-be used in your very last run of \LaTeX\ to ensure
-balanced column heights on the last page.}, the \LaTeX\ document
-class file handles all of this for you.
-
-The remainder of this document is concerned with showing, in
-the context of an ``actual'' document, the \LaTeX\ commands
-specifically available for denoting the structure of a
-proceedings paper, rather than with giving rigorous descriptions
-or explanations of such commands.
 
 \section{The {\secit Body} of The Paper}
 Typically, the body of a paper is organized
@@ -177,7 +155,15 @@ different dimension subspaces and found 300 to be a good dimension that
 saves enough on running time without sacrificing too much in terms of
 underfitting.
 
-<Figure of dimension vs running time>
+\begin{figure}
+\centering
+\includegraphics[width=3in,height=2in]{../poster/images/dim_vs_runningtime.png} 
+\caption{Here we plot the time clustering took (using g-means) vs the
+  dimension we reduced to using PCA. The roughly linear relationship shows
+how the tradeoff between dimensionality of our feature vector and running
+time was straightforward.}
+\end{figure}
+
 Here we can clearly see the relationship between the dimensionality of our
 featuer vectors and the time it takes to run our clustering code. As we
 iterated on our project, reducing the running time of our algorithm was
