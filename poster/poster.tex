@@ -125,8 +125,8 @@
           \break
           We then define $W'$ as the zero mean normalized to the standard
           deviation on each channel of $W$. The next step is to
-          separate out the possible spikes to cluster. We define the
-          spike locations of interest as:
+          separate out the possible spikes to cluster. We \alert{define the
+          spike locations} of interest as:
           \break
           \begin{center}
           $P = \{ i; \frac{\partial}{\partial W} = 0 \cap 
@@ -135,8 +135,8 @@
           \end{center}
           \break
           Peaks are then cut to ensure that they are a minimum of
-          $\alpha = 15$ from each other. To form a single feature vector $X^{(i)}$ we take the
-          surrounding points on each channel and concatentate them. \break
+          $\alpha = 15$ from each other. To form a single feature vector $X^{(i)}$ we \alert{take the
+          surrounding points} on each channel and concatentate them. \break
           \begin{center}
           $X^{(i)}_j = W'^{floor(i/(L+R+1))+1}_{mod(j, L+R+1) + P(i)}
           ; i = 1,...,|P|, j = 1,...,(L+R+1)*CH$ \break
@@ -164,7 +164,7 @@
         
         We paramaterize our feature vectors from the raw data with the following representations:
         \begin{center}
-          $X = M(R; S,T,L,R)$ 
+          $X = M(R; S,T,L,R)$ \\ 
         \end{center}
         \break
         We then use different methods to reduce the dimensionality of
@@ -241,7 +241,7 @@ channels each, we have features in $\mathbb{R}^{1800}$.
         One way to choose k in the k-means algorithm is to use an algorithm
 developed in 2003 by Greg Hamerly and Charles Elka, presented in the NIPS
 2003 conference. We start with kmeans at some small value for $k$ and for each cluster produced, a
-heuristic function decides whether to split that cluster: the
+\alert{heuristic function decides whether to split that cluster}: the
 Anderson-Darling statistic. The Anderson-Darling statistic is computed as follows:
 $$
 A^2(Z) = -n - \frac{1}{n}\sum_{i=1}^n (2i -
@@ -249,22 +249,22 @@ A^2(Z) = -n - \frac{1}{n}\sum_{i=1}^n (2i -
 $$$$
 A^2_*(Z) = A^2(Z)(1 + 4/n - 25/n^2)
 $$
-We define a threshold $\omega$ and only if $A^2_*(Z)  > \omega$ is
-greater than the threshold, we split. We found $\omega = 12$ to be best.
 \vskip2cm
        \begin{columns}[c,l]
          \column{.25\linewidth}
 \includegraphics[width=1.0\linewidth]{images/gmeans_k_vs_metric.png} 
          \column{.7\linewidth}
+We define $\omega$ such that only if $A^2_*(Z)  > \omega$ is
+greater than the threshold, we split. We found $\omega = 12$ to be best.
 Here we plot the average Anderson-Darling statistic across all
 clusters as a function of k. We can see how we arrive at a value of k
 to use when the statistic crosses the threshold (6).
        \end{columns} 
 
        \noindent{\textbf{Davies-Bouldin Index}}\par The DB Index is
-       another way to determine $k$ by favoring sets of clusters
+       another way to determine $k$ by \alert{favoring sets of clusters
        with high intra-cluster similarity and low inter-cluster
-       similarity.  The formula is as follows:\newline
+       similarity}.  The formula is as follows:\newline
 
 \begin{columns}[c,c]
   \column{.48\linewidth}
@@ -279,21 +279,29 @@ $M^{ij} = (\sum\limits_{k=1}^{N} |a^i_k - a^j_k|^p)^{\frac{1}{p}}$\newline
 $DB = \frac{1}{N} \sum\limits_{i=1}^N \max_{j:i \neq j} R_{ij}$\newline
 \end{center} 
  \column{.48\linewidth}  
-The graph to the right is of k vs DB:\newline
-\includegraphics[width=0.97\linewidth]{images/davies_k_vs_davies_index.png}
-
+\begin{center}
+\small{The graph to the right is of k vs DB:}\newline
+\vskip0.1cm
+\includegraphics[width=0.9\linewidth]{images/davies_k_vs_davies_index.png}
+\end{center}
 \end{columns} 
 
       \end{block}
 
       \begin{block}{Results}
-        Plotting the top 3 plots for both ICA(left)
-        vs. Polynomial(right):
+        Plotting the top 3 clusters for both ICA(left)
+        vs. Polynomial(right) using g-means:
         \begin{columns}[t]
           \column{.48\linewidth}
-          \includegraphics[width=0.6\linewidth]{images/top3.png}
+          \begin{center}
+          \includegraphics[width=0.6\linewidth]{images/top3_pca.png} \\
+          110 Clusters were found
+          \end{center}
           \column{.48\linewidth}
-          
+          \begin{center}
+          \includegraphics[width=0.6\linewidth]{images/top3_poly2.png} \\
+          120 Clusters were found
+          \end{center}
         \end{columns}
         \end{block}
 
@@ -301,11 +309,11 @@ The graph to the right is of k vs DB:\newline
         \vskip1ex
         \noindent{\textbf{Conclusions}}
         \begin{itemize}
-        \item PCA was very useful for compressing the data well
-        \item Understanding meaning of data and how to format it
-          correctly is important
+        \item PCA was very useful for \alert{compressing} the data well
+        \item Understanding meaning of data and how to \alert{format it
+          correctly} is important
         \item The number of clusters and the confidence of them is
-          very dependent on the heuristic used.
+          very \alert{dependent on the heuristic} used.
         \end{itemize}
 
         \vskip1ex
