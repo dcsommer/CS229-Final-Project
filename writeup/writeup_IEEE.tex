@@ -294,21 +294,29 @@ the mostpart they result in a similar distribution of cluster sizes(Fig. 5.).
 \end{figure}
 
 Next we look at how the clusters compare with each other.  To view the
-results the top 3 clusters were chosen. Take the top two
+results, the top 3 clusters were chosen. Taking the top two
 principle components of the combined data from the clusters and then
-plot each $X^{(i)}$ within this space. Each point is colored for its
-cluster. Comparing clusters of PCA versus polyfit they both obtain
-similar clusters (Fig 6.) however PCA gets more
-datapoints in the top clusters. Furthermore, taking the top five
+plot each $X^{(i)}$ within this space gives these plots. Each point is colored for its
+cluster. First we compare how different parameters for forming the
+features compare by adjusting R and L. We see that having features
+more based on what is after the spike leads to more separable
+datapoints (Fig. 7 and 9 versus Fig 6 and 8). We also see that PCA
+does better than polyfit not only in that the clusters are more
+separable but also PCA gets more
+datapoints in the top clusters (Fig. 10 and 11). Furthermore, taking the top five
 clusters within a three dimensional space using the top three
-priciples componenets, we see they also mostly separate (Figure. X).
+priciples componenets, we see they also mostly separate (Figure. 12).
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\linewidth]{top3_poly2.png}
-\caption{Top three clusters using polynomial features.}
-\includegraphics[width=0.7\linewidth]{top3_pca.png}
-\caption{Top three clusters using pca features.}
+\includegraphics[width=0.7\linewidth]{plots/poly_L.jpg}
+\caption{Top three clusters using polynomial features. L = 21, R = 8.}
+\includegraphics[width=0.7\linewidth]{plots/poly_R.jpg}
+\caption{Top three clusters using polynomial features. L = 8, R = 21.}
+\includegraphics[width=0.7\linewidth]{plots/PCA_L.jpg}
+\caption{Top three clusters using PCA features. L = 21, R = 8.}
+\includegraphics[width=0.7\linewidth]{plots/PCA_R.jpg}
+\caption{Top three clusters using PCA features. L = 8, R = 21.}
 \end{figure}
 
 \begin{figure}
@@ -318,10 +326,14 @@ priciples componenets, we see they also mostly separate (Figure. X).
 \includegraphics[width=0.7\linewidth]{traces/clustertrace_poly_front.jpg}
 \caption{Traces of top cluster using Polynomial fitting. Top two
   channels.}
-
 \end{figure}
 
-
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{traces/pca_top5_3d.jpg}
+\caption{Top 5 clusters using PCA transformed into three dimensional
+  space using top three principle components.}
+\end{figure}
 
 
 
@@ -339,11 +351,11 @@ unsupervised learning with real world data.
 Future work within this space could be to try using scale and
 translation independent encoding of the waveforms. This could make the
 algorithm less sensitive to variations.  We also believe there could
-be better clustering algorithms to take specific neurophysiological 
-heuristics into account.
+be better clustering algorithms to take specific physiological 
+aspects into account.
 
 
-\\section*{Acknowledgment}
+\section*{Acknowledgment}
 The authors would like to thank the Stephen Baccus Lab for providing
 the data and the insight into how to approach this problem.
 
