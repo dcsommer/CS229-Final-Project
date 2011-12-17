@@ -1,6 +1,4 @@
-function [features] = extract_features(data, peaks)
-left = 21;
-right = 8;
+function [features] = extract_features(data, peaks, left, right)
 numChannels = size(data, 1);
 numPeaks = size(peaks, 2);
 featureDim = numChannels * (left + right + 1);
