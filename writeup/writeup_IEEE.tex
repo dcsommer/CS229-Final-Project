@@ -22,7 +22,7 @@
 Stanford University\\
 Stanford, California 94305}
 \and
-\IEEEauthorblockN{Daniel Sommerman}
+\IEEEauthorblockN{Daniel Sommermann}
 \IEEEauthorblockA{Department Of Computer Science \\
 Stanford University\\
 Stanford, California 94305}
@@ -111,7 +111,7 @@ We then define $W'$ as the zero mean normalized to the standard
 deviation on each channel of $W$. The next step is to
 separate out the possible spikes to cluster. We define the
 spike locations of interest as:
-$$P = \{ i; \frac{\partial}{\partial W} = 0 \cap 
+$$P = \{ i; \frac{\partial}{\partial t}W = 0 \cap 
   (W_1'(P_i) > T \cup ... \cup W_{CH}'(P_i) > T) \cap i \in
   1,...,N \} $$
 This represents any point that is a local maximum and is above the
@@ -160,10 +160,10 @@ percentage of error, 300 principal components optimizes both.
 We then take the components and project our features into that space, $\mathbb{R}^{300}$.
 
 Performing this optimization allowed us to run k-means clustering in 13\%
-of the time without compression. This significantly reduces the time
+of the time needed without compression. This significantly reduces the time
 needed without sacrificing too much in terms of underfitting. Figure 1
 shows the relationship between the dimensionality of our
-featuer vectors and the time it takes to run our clustering code. As we
+feature vectors and the time it takes to run our clustering code. As we
 iterated on our project, reducing the running time of our algorithm was
 critical to being able to try many different ideas quickly.
 
@@ -206,16 +206,16 @@ account per channel in the condensation, it fails to encode the
 meaningful information as well.
 
 \subsection{Clustering Algorithms}
-As the engine for both of the clustering algorithms, we used kmeans
+As the engine for both of the clustering algorithms, we used k-means
 clustering. However, the real work at this stage is to determine which k
-should be used in kmeans. We tried two approaches to solving this
+should be used in k-means. We tried two approaches to solving this
 problem. 
 
 \subsubsection{G-Means algorithm}
 One way to choose k in the k-means algorithm is to use an algorithm
 developed in 2003 by Greg Hamerly and Charles Elka, presented in the NIPS
-2003 conference \cite{gmeans}. In this method, a small value for k is
-chosen and kmeans is run. Then, for each cluster produced, we use a
+2003 conference. In this method, a small value for k is
+chosen and k-means is run. Then, for each cluster produced, we use a
 heuristic function to decide whether to split that cluster. The heuristic
 used is the Anderson-Darling statistic. If that statistic is greater than
 some threshold critical value, then we decide that the cluster should be
@@ -367,6 +367,10 @@ the data and the insight into how to approach this problem.
 \bibitem{IEEEhowto:kopka}
 UCSD, \emph{Spike Sorting},
 http://physics.ucsd.edu/neurophysics/publications/obd\_ch3\_2.pdf
+
+\bibitem{HamElk}
+G. Hamerly, C. Elkan, \emph{Learning the k in k-means}
+http://books.nips.cc/papers/files/nips16/NIPS2003\_AA36.pdf
 
 \bibitem{IEE}
 M. Lewicki, \emph{A review of methods for spike sorting}
