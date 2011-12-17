@@ -275,13 +275,33 @@ $DB = \frac{1}{N} \sum\limits_{i=1}^N \max_{j:i \neq j} R_{ij}$
 \section{Results}
 
 The results are clusters that each represent a unique
-waveform. However, while these clusters are unique, there is no
+waveform shape. However, while these clusters are unique, there is no
 guarantee if they are correct cells are not. Since this is
 unsupervised learning further analysis with the stimulus would be
 needed to see how clean these cells are.
-To view the results the top 3 clusters were chosen. Take the top two
+
+Looking at how the clusters lay out we see that many clusters have few
+points within them. These could be far away cells that can be
+separated out but it is hard to tell over the noise of the system. We
+compare the different methods of obtaining features and see that on
+the mostpart they result in a similar distribution of cluster sizes(Fig. 5.).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\linewidth]{traces/clusthistcount.jpg}
+\caption{Shows the number of samples in each cluster sorter. Red is
+  PCA and blue is polyfit. Dashed is L=8, R= 21; Solid is L = 21, R = 8.}
+\end{figure}
+
+Next we look at how the clusters compare with each other.  To view the
+results the top 3 clusters were chosen. Take the top two
 principle components of the combined data from the clusters and then
-plot each $X^{(i)}$ within this space. Each point is colored for its cluster.
+plot each $X^{(i)}$ within this space. Each point is colored for its
+cluster. Comparing clusters of PCA versus polyfit they both obtain
+similar clusters (Fig 6.) however PCA gets more
+datapoints in the top clusters. Furthermore, taking the top five
+clusters within a three dimensional space using the top three
+priciples componenets, we see they also mostly separate (Figure. X).
 
 \begin{figure}
 \centering
@@ -290,6 +310,17 @@ plot each $X^{(i)}$ within this space. Each point is colored for its cluster.
 \includegraphics[width=0.7\linewidth]{top3_pca.png}
 \caption{Top three clusters using pca features.}
 \end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{traces/clustertrace_pca_front.jpg}
+\caption{Traces of top cluster using PCA. Top two channels.}
+\includegraphics[width=0.7\linewidth]{traces/clustertrace_poly_front.jpg}
+\caption{Traces of top cluster using Polynomial fitting. Top two
+  channels.}
+
+\end{figure}
+
 
 
 
@@ -318,7 +349,22 @@ the data and the insight into how to approach this problem.
 
 
 %\end{document}  % This is where a 'short' article might terminate
-\bibliographystyle{abbrv}
-\bibliography{sigproc}
+\begin{thebibliography}{1}
+
+
+\bibitem{IEEEhowto:kopka}
+UCSD, \emph{Spike Sorting},
+http://physics.ucsd.edu/neurophysics/publications/obd\_ch3\_2.pdf
+
+\bibitem{IEE}
+M. Lewicki, \emph{A review of methods for spike sorting}
+http://www.tsolab.org/jclub/20090429/lewicki.pdf
+
+\bibitem{ee}
+D. Davies, D. Bouldin, \emph{A cluster separation measure}
+http://ieeexplore.ieee.org/xpls/abs\_all.jsp?arnumber\=4766909\&tag\=1
+
+
+\end{thebibliography}
 
 \end{document}
