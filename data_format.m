@@ -15,6 +15,8 @@ disp 'Smooth Data'
 dataSmooth = dataM;
 %Smooth Data
 for i=1:CHAN_N
+   size(dataM(:,i))
+   smooth_points
    dataSmooth(:,i) = smooth(dataM(:,i), smooth_points);
 end
 
