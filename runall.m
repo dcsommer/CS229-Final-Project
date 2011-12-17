@@ -9,7 +9,7 @@ SNIP_THRESH = 7;
 LEFT = 21;
 RIGHT = 8;
 
-FULL_PIPE = 1; %Set to one to extract data too
+FULL_PIPE = 0; %Set to one to extract data too
 PCA = 1;
 
 
